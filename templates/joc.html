@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AmbNassos · ambNassos</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <main class="container">
+
+    <header>
+      <h1>AmbNassos</h1>
+      <p class="subtitle">Fes somriure el màxim de persones en 40 segons</p>
+    </header>
+
+    <section class="card">
+      <div class="stats">
+        <div>Puntuació: <strong id="score">0</strong></div>
+        <div>Temps: <strong id="time">40</strong>s</div>
+      </div>
+
+      <div id="board" class="board"></div>
+
+      <button id="start" type="button" class="btn btn-blue btn-block">Comença!</button>
+
+      <p class="rules">Clica només les cares <strong>tristes</strong>. Si cliques una cara contenta, perds un punt.</p>
+    </section>
+
+    <a class="back" href=".">← Tornar</a>
+
+    <footer>Web realitzada per Francesc Esteve</footer>
+
+  </main>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <h2>Temps!</h2>
+      <p>Has aconseguit transformar <strong id="final-score">0</strong> cares tristes en somriures!</p>
+      <p>Els Pallapupas també ho fan cada dia als hospitals. Ajuda'ns a continuar-ho fent possible.</p>
+      <a class="btn btn-red" href="{{ apadrina_url }}">Apadrina un somriure</a>
+      <button id="restart" type="button" class="btn btn-blue">Torna a jugar</button>
+    </div>
+  </div>
+
+  <script src="static/joc.js"></script>
+</body>
+</html>

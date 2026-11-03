@@ -1,0 +1,292 @@
+:root {
+  --bg: #fdf3d4;
+  --card: #fffdf7;
+  --blue: #1f5fa8;
+  --red: #e11d1d;
+  --text: #333;
+  --muted: #666;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+header { text-align: center; }
+
+h1 {
+  color: var(--blue);
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 4px 0 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.campaign {
+  text-align: center;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--muted);
+  margin: 10px 0 4px;
+}
+
+.field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.toggle button {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toggle button.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-blue {
+  background: var(--blue);
+}
+
+.btn-red {
+  background: var(--red);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 6px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ---------- AmbNassos ---------- */
+
+.hidden { display: none !important; }
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border: 1px solid #e3dccb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.cell:disabled { cursor: default; }
+
+.cell svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cell.pop { animation: pop 0.4s ease-out; }
+.cell.shake { animation: shake 0.3s; }
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.rules {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 12px 0 0;
+}
+
+.back {
+  display: inline-block;
+  margin: 4px 0 16px;
+  color: var(--blue);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.overlay-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 24px;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.overlay-card h2 {
+  color: var(--blue);
+  margin-top: 0;
+}
+
+.overlay-card .btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.btn { margin-top: 0; }
+
+/* ---------- Joc adaptable a web i mòbil ---------- */
+
+/* Evita zoom amb doble toc i selecció de text accidental mentre es juga */
+.cell, #start, #restart {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* La graella és sempre quadrada i cap a la pantalla, sense desbordar en alçada */
+.board {
+  width: min(100%, 440px, calc(100vh - 300px));
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 220px;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0;
+}
+
+.stats {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+h1 {
+  font-size: clamp(1.8rem, 6vw, 2.2rem);
+}
+
+.container {
+  padding: clamp(12px, 3vw, 24px) clamp(10px, 3vw, 16px);
+}
+
+.card {
+  padding: clamp(14px, 4vw, 20px);
+}
+
+.overlay-card {
+  width: min(92vw, 420px);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Pantalles molt estretes: botons més grans per tocar amb el dit */
+@media (max-width: 420px) {
+  .btn {
+    padding: 14px 18px;
+  }
+  .board {
+    gap: 6px;
+  }
+}
+
+/* Pantalles baixes (mòbil en horitzontal): la graella es redueix */
+@media (max-height: 600px) {
+  .subtitle { margin-bottom: 8px; }
+  .rules { display: none; }
+  .board {
+    width: min(100%, calc(100vh - 200px));
+  }
+}
+
+/* Imatges de nen i nena (cares contentes) */
+.cell .face-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
