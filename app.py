@@ -6,11 +6,6 @@ APADRINA_URL = "https://www.stockcrowd.com/p2p/1799/Apadrinaunsomriure"
 
 
 @app.route("/")
-def index():
-    return render_template("index.html", apadrina_url=APADRINA_URL)
-
-
-@app.route("/joc")
 def joc():
     return render_template("joc.html", apadrina_url=APADRINA_URL)
 

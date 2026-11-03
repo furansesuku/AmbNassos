@@ -9,14 +9,13 @@ la crida a apadrinar un somriure i el joc "AmbNassos".
 --------------------------
 
 ambNassos/
-├── app.py                      Aplicació Flask (rutes / i /joc)
+├── app.py                      Aplicació Flask (ruta / mostra el joc)
 ├── requirements.txt            Dependències (flask, gunicorn, python-dotenv)
 ├── .gitignore                  Fitxers que no es pugen a GitHub (.env, .venv...)
 ├── .env.example                Plantilla de variables d'entorn (el .env real NO es puja)
 ├── README.txt                  Aquest fitxer
 ├── templates/
-│   ├── index.html              Pàgina principal
-│   └── joc.html                Pàgina del joc AmbNassos
+│   └── joc.html                Pàgina del joc AmbNassos (és la pàgina principal)
 ├── static/
 │   ├── style.css               Estils de tota la web (incloent el joc i la versió mòbil)
 │   ├── joc.js                  Lògica del joc
@@ -33,9 +32,8 @@ ambNassos/
 2. RUTES DE L'APLICACIÓ
 -----------------------
 
-  /        Pàgina principal: menús d'exemple, campanya #RiuadeNassos,
-           botó "Apadrina un somriure" (enllaç a StockCrowd) i botó "Jugar".
-  /joc     Joc AmbNassos.
+  /        Joc AmbNassos (pàgina principal).
+           El botó "Apadrina un somriure" de la pantalla final porta a StockCrowd.
 
 Totes les rutes d'enllaços, fitxers estàtics i formularis són RELATIVES
 (sense "/" inicial), perquè l'app funciona darrere del prefix
@@ -51,8 +49,7 @@ Totes les rutes d'enllaços, fitxers estàtics i formularis són RELATIVES
   .venv\Scripts\python.exe app.py
 
   Després obrir al navegador:
-    http://127.0.0.1:8204/        pàgina principal
-    http://127.0.0.1:8204/joc     joc
+    http://127.0.0.1:8204/        joc AmbNassos
 
   Per aturar-la: Ctrl+C. Si canvies fitxers estàtics (CSS, JS, imatges),
   recarrega la pàgina amb Ctrl+F5.
@@ -167,3 +164,7 @@ Flux: PC -> git push a GitHub -> git pull al servidor.
 
   v0.5  Canvi de nom del joc: "Somriures exprés" passa a "AmbNassos"
         (títol de la pàgina, targeta de la pàgina principal i documentació).
+
+  v0.6  La pàgina principal és directament el joc. Eliminada la pàgina de
+        placeholders (menús d'exemple) i els estils que no formaven part
+        del joc. La ruta /joc ja no existeix; el joc és a la arrel.

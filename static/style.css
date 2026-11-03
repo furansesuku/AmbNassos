@@ -43,49 +43,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-.campaign {
-  text-align: center;
-}
-
-.field label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: var(--muted);
-  margin: 10px 0 4px;
-}
-
-.field select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: #fff;
-}
-
-.toggle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 14px 0;
-}
-
-.toggle button {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--blue);
-  background: #fff;
-  color: var(--blue);
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.toggle button.active {
-  background: var(--blue);
-  color: #fff;
-}
-
 .btn {
   display: inline-block;
   border: none;
@@ -217,7 +174,6 @@ footer {
   margin-top: 12px;
 }
 
-.btn { margin-top: 0; }
 
 /* ---------- Joc adaptable a web i mòbil ---------- */
 
