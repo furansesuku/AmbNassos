@@ -11,6 +11,13 @@
   const overlay = document.getElementById('overlay');
   const finalScoreEl = document.getElementById('final-score');
   const restartBtn = document.getElementById('restart');
+  const formNom = document.getElementById('form-nom');
+  const nomInput = document.getElementById('nom');
+  const guardarBtn = document.getElementById('guardar');
+  const missatgeEl = document.getElementById('missatge');
+  const resultatEl = document.getElementById('resultat');
+  const topBody = document.getElementById('top-body');
+  const overlayTopBody = document.getElementById('overlay-top-body');
 
   let cells = [];
   let score = 0;
@@ -121,13 +128,93 @@
     clearInterval(tickInterval);
     cells.forEach((_, i) => clearCell(i));
     setPlaying(false);
+
     finalScoreEl.textContent = score;
+
+    // Al final demanem el nom; el top 7 es mostra després de guardar
+    nomInput.value = '';
+    guardarBtn.disabled = false;
+    missatgeEl.textContent = '';
+    formNom.classList.remove('hidden');
+    resultatEl.classList.add('hidden');
+    restartBtn.classList.add('hidden');
+
     overlay.classList.remove('hidden');
     startBtn.classList.remove('hidden');
   }
 
+  // ---------- Classificació (top 7) ----------
+
+  // Pinta una taula de top 7. Usa textContent perquè els noms els escriu el públic.
+  function pintaTaula(tbody, llista, posicio) {
+    tbody.innerHTML = '';
+    llista.forEach((entrada, idx) => {
+      const tr = document.createElement('tr');
+      if (posicio === idx + 1) tr.className = 'jo';
+
+      const tdPos = document.createElement('td');
+      tdPos.textContent = idx + 1;
+
+      const tdNom = document.createElement('td');
+      tdNom.textContent = entrada.nom;
+
+      const tdPunts = document.createElement('td');
+      tdPunts.className = 'num';
+      tdPunts.textContent = entrada.punts;
+
+      tr.append(tdPos, tdNom, tdPunts);
+      tbody.appendChild(tr);
+    });
+    if (llista.length === 0) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 3;
+      td.className = 'buit';
+      td.textContent = 'Encara no hi ha puntuacions';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+  }
+
+  function carregaTop() {
+    fetch('api/top')
+      .then(r => r.json())
+      .then(llista => pintaTaula(topBody, llista, null))
+      .catch(() => { /* si falla, la taula queda buida */ });
+  }
+
+  function guardaPuntuacio() {
+    const nom = nomInput.value.trim();
+    guardarBtn.disabled = true;
+    missatgeEl.textContent = '';
+
+    fetch('api/puntuacio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nom: nom, punts: score })
+    })
+      .then(r => r.json().then(data => ({ ok: r.ok, data: data })))
+      .then(res => {
+        if (!res.ok) throw new Error(res.data.error || 'Error');
+        formNom.classList.add('hidden');
+        resultatEl.classList.remove('hidden');
+        restartBtn.classList.remove('hidden');
+        pintaTaula(overlayTopBody, res.data.top, res.data.posicio);
+        pintaTaula(topBody, res.data.top, res.data.posicio);
+      })
+      .catch(() => {
+        guardarBtn.disabled = false;
+        missatgeEl.textContent = 'No s\'ha pogut guardar. Torna-ho a provar.';
+      });
+  }
+
   startBtn.addEventListener('click', start);
   restartBtn.addEventListener('click', start);
+  guardarBtn.addEventListener('click', guardaPuntuacio);
+  nomInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') guardaPuntuacio();
+  });
 
   buildBoard();
+  carregaTop();
 })();

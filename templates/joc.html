@@ -27,6 +27,16 @@
       <p class="rules">Clica només les cares <strong>tristes</strong>. Si cliques una cara contenta, perds un punt.</p>
     </section>
 
+    <section class="card">
+      <h2 class="titol-top">Classificació</h2>
+      <table class="taula-top">
+        <thead>
+          <tr><th>#</th><th>Jugador</th><th class="num">Punts</th></tr>
+        </thead>
+        <tbody id="top-body"></tbody>
+      </table>
+    </section>
+
     <footer>Web realitzada per Francesc Esteve</footer>
 
   </main>
@@ -36,8 +46,26 @@
       <h2>Temps!</h2>
       <p>Has aconseguit transformar <strong id="final-score">0</strong> cares tristes en somriures!</p>
       <p>Els Pallapupas també ho fan cada dia als hospitals. Ajuda'ns a continuar-ho fent possible.</p>
+
+      <div id="form-nom" class="form-nom">
+        <label for="nom">Escriu el teu nom per entrar al top 7:</label>
+        <input id="nom" type="text" maxlength="20" autocomplete="off" placeholder="El teu nom">
+        <button id="guardar" type="button" class="btn btn-blue btn-block">Guardar</button>
+        <p id="missatge" class="missatge"></p>
+      </div>
+
+      <div id="resultat" class="hidden">
+        <h3 class="titol-top">Top 7</h3>
+        <table class="taula-top">
+          <thead>
+            <tr><th>#</th><th>Jugador</th><th class="num">Punts</th></tr>
+          </thead>
+          <tbody id="overlay-top-body"></tbody>
+        </table>
+      </div>
+
       <a class="btn btn-red" href="{{ apadrina_url }}">Apadrina un somriure</a>
-      <button id="restart" type="button" class="btn btn-blue">Torna a jugar</button>
+      <button id="restart" type="button" class="btn btn-blue hidden">Torna a jugar</button>
     </div>
   </div>
 

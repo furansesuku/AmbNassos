@@ -110,6 +110,15 @@ Flux: PC -> git push a GitHub -> git pull al servidor.
   - Al final apareix el missatge amb la puntuació real i el botó
     "Apadrina un somriure". També hi ha "Torna a jugar".
 
+  Classificació (top 7):
+    En acabar la partida es demana el nom i es guarda la puntuació.
+    Es mostren els 7 millors (els empats es desfan per ordre d'arribada).
+    La taula també es veu a la pàgina, sota la graella del joc.
+    Les dades es guarden a ../dades_ambNassos/top7.json (carpeta germana del
+    projecte, fora de Git: un git pull no les esborra). Rutes:
+      GET  api/top          llista el top 7
+      POST api/puntuacio    guarda {nom, punts} i retorna el top 7
+
   Missatge final (amb la puntuació del jugador):
     "Has aconseguit transformar X cares tristes en somriures! Els Pallapupas
     també ho fan cada dia als hospitals. Ajuda'ns a continuar-ho fent possible."
@@ -164,6 +173,9 @@ Flux: PC -> git push a GitHub -> git pull al servidor.
 
   v0.5  Canvi de nom del joc: "Somriures exprés" passa a "AmbNassos"
         (títol de la pàgina, targeta de la pàgina principal i documentació).
+
+  v0.7  Top 7 de jugadors: nom en acabar la partida, taula de classificació
+        a la pàgina i desada en un JSON fora del projecte (../dades_ambNassos).
 
   v0.6  La pàgina principal és directament el joc. Eliminada la pàgina de
         placeholders (menús d'exemple) i els estils que no formaven part

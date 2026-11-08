@@ -246,3 +246,74 @@ h1 {
   object-fit: contain;
   pointer-events: none;
 }
+
+/* ---------- Classificació (top 7) i formulari de nom ---------- */
+
+.titol-top {
+  color: var(--red);
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+.taula-top {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.taula-top th,
+.taula-top td {
+  padding: 8px 6px;
+  border-bottom: 1px solid #e8e0c8;
+  text-align: left;
+}
+
+.taula-top th {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.taula-top .num {
+  text-align: right;
+  font-weight: bold;
+}
+
+.taula-top tr.jo td {
+  background: #fdf3d4;
+  font-weight: bold;
+}
+
+.taula-top .buit {
+  text-align: center;
+  color: var(--muted);
+}
+
+.form-nom {
+  margin: 16px 0 4px;
+}
+
+.form-nom label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.form-nom input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #d8cfb8;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.missatge {
+  color: var(--red);
+  font-size: 0.9rem;
+  min-height: 1em;
+  margin: 8px 0 0;
+}
+
+#resultat {
+  margin: 16px 0 4px;
+}
